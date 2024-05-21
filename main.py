@@ -1,13 +1,13 @@
-import json, streamlit as st
+import os, json, streamlit as st
 import request
 
-
-with open('settings.json') as f:
-    settings = json.load(f)
+if os.path.isfile('settings.json'):
+    with open('settings.json') as f:
+        settings = json.load(f)
 
 api_key = settings.get('OPENAI_API_KEY')
 
-if api_key is None:
+if api_key is None or api_key == "":
     api_key = st.secrets["OPENAI_API_KEY"]
     
 assert api_key is not None, "OpenAI API key not found."
