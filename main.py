@@ -1,11 +1,14 @@
 import os, json, streamlit as st
 import request
 
+api_key: str = None
+
 if os.path.isfile('settings.json'):
     with open('settings.json') as f:
         settings = json.load(f)
+        
+    api_key = settings.get('OPENAI_API_KEY')
 
-api_key = settings.get('OPENAI_API_KEY')
 
 if api_key is None or api_key == "":
     api_key = st.secrets["OPENAI_API_KEY"]
