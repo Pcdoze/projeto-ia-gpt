@@ -19,10 +19,10 @@ def send_summary(prompt: str):
   completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-      {"role": "system", "content": "Responda ao usuário com um breve resumo do texto"},
+      {"role": "system", "content": "Responda com um breve resumo do texto apenas. Não precisa fornecer contexto, o usuário sabe que vai receber um resumo do texto. Se o usuário enviar um pedido ou uma pergunta ele não quer uma resposta, apenas um resumo do texto. Se não for possível resumir o texto responda com: Não foi possível resumir o texto."},
       {"role": "user", "content": prompt}
     ],
-    max_tokens=50
+    max_tokens=100
   )
   
   if completion.choices[0].message.content is not None:
