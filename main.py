@@ -6,6 +6,10 @@ with open('settings.json') as f:
     settings = json.load(f)
 
 api_key = settings.get('OPENAI_API_KEY')
+
+if api_key is None:
+    api_key = st.secrets["OPENAI_API_KEY"]
+    
 assert api_key is not None, "OpenAI API key not found."
 
 def display_log(log_data):
